@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frame Lens Blank Size Calculator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+  <h2>SPOG Lens Blank Size Calculator</h2>
+  <form>
+    <div class="form-group">
+      <label for="eyeSize">Eye Size (A) (mm):</label>
+      <input type="number" class="form-control" id="eyeSize" placeholder="Enter Eye Size">
+    </div>
+    <div class="form-group">
+      <label for="bridgeSize">Bridge Size (DBL) (mm):</label>
+      <input type="number" class="form-control" id="bridgeSize" placeholder="Enter Bridge Size">
+    </div>
+    <div class="form-group">
+      <label for="pupillaryDistance">Pupillary Distance (PD) (mm):</label>
+      <input type="number" class="form-control" id="pupillaryDistance" placeholder="Enter Pupillary Distance">
+    </div>
+    <div class="form-group">
+      <label for="effectiveDiameter">Effective Diameter (ED) (mm):</label>
+      <input type="number" class="form-control" id="effectiveDiameter" placeholder="Enter Effective Diameter">
+    </div>
+    <div class="form-group">
+      <label for="additionalMargin">Additional Margin for Cutting (mm):</label>
+      <input type="number" class="form-control" id="additionalMargin" placeholder="Enter Additional Margin (default: 2mm)">
+    </div>
+    <button type="button" class="btn btn-primary" onclick="calculateLensBlank()">Calculate</button>
+  </form>
+  
+  <div class="mt-3">
+    <h4>Result:</h4>
+    <p id="result"></p>
+  </div>
+</div>
+
+<script>
+  function calculateLensBlank() {
+    var eyeSize = parseFloat(document.getElementById('eyeSize').value);
+    var bridgeSize = parseFloat(document.getElementById('bridgeSize').value);
+    var pupillaryDistance = parseFloat(document.getElementById('pupillaryDistance').value);
+    var effectiveDiameter = parseFloat(document.getElementById('effectiveDiameter').value);
+    var additionalMargin = parseFloat(document.getElementById('additionalMargin').value) || 2; // default to 2mm if no value is entered
+
+    var lensBlankSize = eyeSize + bridgeSize - pupillaryDistance + effectiveDiameter + additionalMargin;
+    
+    document.getElementById('result').innerHTML = "Lens Blank Size Needed: " + lensBlankSize.toFixed(2) + "mm";
+  }
+</script>
+</body>
+</html>
